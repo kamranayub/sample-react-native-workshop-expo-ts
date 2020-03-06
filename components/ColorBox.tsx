@@ -1,25 +1,36 @@
+/* eslint-disable no-bitwise */
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { spacing } from '../tokens';
-import { Color } from '../color';
 
 interface ColorBoxProps {
   hexCode: string;
   colorName: string;
 }
 
+function getLightnessFromHexColor(hex: string) {
+  var c = hex.substring(1); // strip #
+  var rgb = parseInt(c, 16); // convert rrggbb to decimal
+  var r = (rgb >> 16) & 0xff; // extract red
+  var g = (rgb >> 8) & 0xff; // extract green
+  var b = (rgb >> 0) & 0xff; // extract blue
+
+  const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+  return luma;
+}
+
 const ColorBox: React.FC<ColorBoxProps> = props => {
   const boxColor = {
     backgroundColor: props.hexCode,
   };
-  const lightness = Color.fromHex(props.hexCode).lightness();
+  const lightness = getLightnessFromHexColor(props.hexCode); //Color.fromHex(props.hexCode).lightness();
 
   return (
     <Text
       style={[
         styles.box,
         boxColor,
-        lightness > 0.5 ? styles.darkText : styles.lightText,
+        lightness > 128 ? styles.darkText : styles.lightText,
       ]}
     >
       {props.colorName} {props.hexCode}
