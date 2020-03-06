@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import { spacing } from '../tokens';
 
 interface PalettePreviewProps {
   handlePress: () => void;
@@ -24,7 +25,7 @@ const ColorSwatch = ({ hexCode }) => {
 
 const PalettePreview = ({ handlePress, palette }: PalettePreviewProps) => (
   <TouchableOpacity onPress={handlePress}>
-    <View>
+    <View style={styles.container}>
       <Text style={styles.itemHeader}>{palette.paletteName}</Text>
       <FlatList
         horizontal
@@ -39,18 +40,19 @@ const PalettePreview = ({ handlePress, palette }: PalettePreviewProps) => (
 export default PalettePreview;
 
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: spacing.x6,
+  },
   itemHeader: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: spacing.x2,
   },
   swatch: {
     width: 30,
     height: 30,
-    marginRight: 4,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 3,
+    marginRight: spacing.x2,
+    marginBottom: spacing.x1,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.3,
