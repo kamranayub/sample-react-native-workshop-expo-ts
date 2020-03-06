@@ -1,59 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
-import { spacing } from './tokens';
-import ColorBox from './components/ColorBox';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const COLORS = [
-  { colorName: 'Base03', hexCode: '#002b36' },
-  { colorName: 'Base02', hexCode: '#073642' },
-  { colorName: 'Base01', hexCode: '#586e75' },
-  { colorName: 'Base00', hexCode: '#657b83' },
-  { colorName: 'Base0', hexCode: '#839496' },
-  { colorName: 'Base1', hexCode: '#93a1a1' },
-  { colorName: 'Base2', hexCode: '#eee8d5' },
-  { colorName: 'Base3', hexCode: '#fdf6e3' },
-  { colorName: 'Yellow', hexCode: '#b58900' },
-  { colorName: 'Orange', hexCode: '#cb4b16' },
-  { colorName: 'Red', hexCode: '#dc322f' },
-  { colorName: 'Magenta', hexCode: '#d33682' },
-  { colorName: 'Violet', hexCode: '#6c71c4' },
-  { colorName: 'Blue', hexCode: '#268bd2' },
-  { colorName: 'Cyan', hexCode: '#2aa198' },
-  { colorName: 'Green', hexCode: '#859900' },
-];
+import Home from './screens/Home';
+import ColorPalette from './screens/ColorPalette';
+
+export type RootStackParamList = {
+  Home: undefined;
+  ColorPalette: {
+    paletteName: string;
+    colors: { colorName: string; hexCode: string }[];
+  };
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.heading}>
-          Here are some boxes of different colors:
-        </Text>
-        <FlatList
-          data={COLORS}
-          renderItem={color => <ColorBox {...color.item} />}
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          name="ColorPalette"
+          component={ColorPalette}
+          options={navigation => ({
+            title: navigation.route.params.paletteName,
+          })}
         />
-      </View>
-    </SafeAreaView>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  heading: {
-    fontWeight: 'bold',
-    marginBottom: spacing.x2,
-    fontSize: 18,
-  },
-  safeArea: {
-    flex: 1,
-  },
-  container: {
-    paddingHorizontal: spacing.x4,
-    paddingTop: spacing.x10,
-    paddingBottom: spacing.x2,
-    alignItems: 'stretch',
-    flex: 1,
-  },
-});
 
 export default App;

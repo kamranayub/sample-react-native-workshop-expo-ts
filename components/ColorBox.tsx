@@ -23,17 +23,17 @@ const ColorBox: React.FC<ColorBoxProps> = props => {
   const boxColor = {
     backgroundColor: props.hexCode,
   };
-  const lightness = getLightnessFromHexColor(props.hexCode); //Color.fromHex(props.hexCode).lightness();
+  const lightness = getLightnessFromHexColor(props.hexCode);
 
   return (
     <Text
       style={[
         styles.box,
         boxColor,
-        lightness > 128 ? styles.darkText : styles.lightText,
+        lightness > 140 ? styles.darkText : styles.lightText,
       ]}
     >
-      {props.colorName} {props.hexCode}
+      {props.colorName}: {props.hexCode}
     </Text>
   );
 };
