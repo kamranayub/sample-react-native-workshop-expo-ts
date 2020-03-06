@@ -4,10 +4,10 @@ import { RouteProp } from '@react-navigation/native';
 
 import ColorBox from '../components/ColorBox';
 import { spacing } from '../tokens';
-import { RootStackParamList } from '../App';
+import { MainStackParamList } from '../App';
 
 interface ColorPaletteProps {
-  route: RouteProp<RootStackParamList, 'ColorPalette'>;
+  route: RouteProp<MainStackParamList, 'ColorPalette'>;
 }
 
 const ColorPalette: React.FC<ColorPaletteProps> = ({ route }) => {

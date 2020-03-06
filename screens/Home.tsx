@@ -1,13 +1,23 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
+import { CompositeNavigationProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import PalettePreview from '../components/PalettePreview';
 import { spacing } from '../tokens';
 import { ColorPalette } from '../types';
-import { RootStackParamList } from '../App';
+import { RootStackParamList, MainStackParamList } from '../App';
 
 interface HomeProps {
-  navigation: StackNavigationProp<RootStackParamList, 'Home'>;
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<RootStackParamList>,
+    StackNavigationProp<MainStackParamList, 'Home'>
+  >;
 }
 
 const Home = ({ navigation }: HomeProps) => {
@@ -50,6 +60,13 @@ const Home = ({ navigation }: HomeProps) => {
             palette={palette.item}
           />
         )}
+        ListHeaderComponent={
+          <TouchableOpacity
+            onPress={() => navigation.navigate('ColorPaletteModal')}
+          >
+            <Text style={styles.addButton}>Add color scheme</Text>
+          </TouchableOpacity>
+        }
       />
     </View>
   );
@@ -64,5 +81,11 @@ const styles = StyleSheet.create({
     paddingBottom: spacing.x2,
     flex: 1,
     backgroundColor: 'white',
+  },
+  addButton: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'teal',
+    marginBottom: spacing.x2,
   },
 });
