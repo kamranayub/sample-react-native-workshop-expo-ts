@@ -1,14 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-
-const spacing = {
-  x1: 4,
-  x2: 8,
-  x4: 12,
-  x5: 16,
-  x6: 20,
-  x10: 40,
-} as const;
+import { spacing } from './tokens';
+import ColorBox from './components/ColorBox';
 
 const App = () => {
   return (
@@ -17,18 +10,13 @@ const App = () => {
         <Text style={styles.heading}>
           Here are some boxes of different colors:
         </Text>
-        <Text style={[styles.box, styles.cyan]}>
-          Cyan {styles.cyan.backgroundColor}
-        </Text>
-        <Text style={[styles.box, styles.blue]}>
-          Blue {styles.blue.backgroundColor}
-        </Text>
-        <Text style={[styles.box, styles.magenta]}>
-          Magenta {styles.magenta.backgroundColor}
-        </Text>
-        <Text style={[styles.box, styles.orange]}>
-          Orange {styles.orange.backgroundColor}
-        </Text>
+        <ColorBox hexCode={styles.cyan.backgroundColor} colorName="Cyan" />
+        <ColorBox hexCode={styles.blue.backgroundColor} colorName="Blue" />
+        <ColorBox
+          hexCode={styles.magenta.backgroundColor}
+          colorName="Magenta"
+        />
+        <ColorBox hexCode={styles.orange.backgroundColor} colorName="Orange" />
       </View>
     </SafeAreaView>
   );
@@ -39,16 +27,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: spacing.x2,
     fontSize: 18,
-  },
-  box: {
-    padding: spacing.x2,
-    marginBottom: spacing.x2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: 'white',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    borderRadius: 3,
   },
   cyan: { backgroundColor: '#2aa198' },
   blue: { backgroundColor: '#268bd5' },
