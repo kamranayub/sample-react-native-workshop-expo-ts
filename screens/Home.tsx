@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
-import { spacing } from '../tokens';
+import { StackNavigationProp } from '@react-navigation/stack';
 import PalettePreview from '../components/PalettePreview';
+import { spacing } from '../tokens';
+import { ColorPalette } from '../types';
+import { RootStackParamList } from '../App';
 
-interface ColorPalette {
-  id: number;
-  paletteName: string;
-  colors: { colorName: string; hexCode: string }[];
+interface HomeProps {
+  navigation: StackNavigationProp<RootStackParamList, 'Home'>;
 }
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation }: HomeProps) => {
   const [palettes, setPalettes] = React.useState<ColorPalette[]>([]);
   const [refreshing, setRefreshing] = React.useState<boolean>(false);
 

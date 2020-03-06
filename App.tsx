@@ -4,13 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './screens/Home';
 import ColorPalette from './screens/ColorPalette';
+import { ColorPalette as ColorPaletteParam } from './types';
 
 export type RootStackParamList = {
   Home: undefined;
-  ColorPalette: {
-    paletteName: string;
-    colors: { colorName: string; hexCode: string }[];
-  };
+  ColorPalette: ColorPaletteParam;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();

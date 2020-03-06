@@ -7,16 +7,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { spacing } from '../tokens';
+import { ColorPalette, Color } from '../types';
 
 interface PalettePreviewProps {
   handlePress: () => void;
-  palette: {
-    paletteName: string;
-    colors: { colorName: string; hexCode: string }[];
-  };
+  palette: ColorPalette;
 }
 
-const ColorSwatch = ({ hexCode }) => {
+const ColorSwatch = ({ hexCode }: Color) => {
   const swatch = {
     backgroundColor: hexCode,
   };

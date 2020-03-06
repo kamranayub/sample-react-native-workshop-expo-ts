@@ -2,11 +2,7 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { spacing } from '../tokens';
-
-interface ColorBoxProps {
-  hexCode: string;
-  colorName: string;
-}
+import { Color } from '../types';
 
 function getLightnessFromHexColor(hex: string) {
   var c = hex.substring(1); // strip #
@@ -19,7 +15,7 @@ function getLightnessFromHexColor(hex: string) {
   return luma;
 }
 
-const ColorBox: React.FC<ColorBoxProps> = props => {
+const ColorBox: React.FC<Color> = props => {
   const boxColor = {
     backgroundColor: props.hexCode,
   };
