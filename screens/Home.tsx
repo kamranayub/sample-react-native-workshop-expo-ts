@@ -14,19 +14,21 @@ const Home = ({ navigation }) => {
   const [refreshing, setRefreshing] = React.useState<boolean>(false);
 
   const fetchColorPalettes = React.useCallback(async () => {
-    setRefreshing(true);
-
     const res = await fetch(
       'https://color-palette-api.kadikraman.now.sh/palettes',
     );
-
-    setRefreshing(false);
 
     if (res.ok) {
       const json = (await res.json()) as ColorPalette[];
       setPalettes(json);
     }
-  }, [setPalettes, setRefreshing]);
+  }, [setPalettes]);
+
+  const handleRefresh = React.useCallback(async () => {
+    setRefreshing(true);
+    await fetchColorPalettes();
+    setRefreshing(false);
+  }, [setRefreshing, fetchColorPalettes]);
 
   useEffect(() => {
     fetchColorPalettes();
@@ -36,7 +38,7 @@ const Home = ({ navigation }) => {
     <View style={styles.container}>
       <FlatList
         refreshing={refreshing}
-        onRefresh={fetchColorPalettes}
+        onRefresh={handleRefresh}
         keyExtractor={item => item.paletteName}
         data={palettes}
         renderItem={palette => (
