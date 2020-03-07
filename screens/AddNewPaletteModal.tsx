@@ -172,14 +172,16 @@ const COLORS: Color[] = [
   { colorName: 'YellowGreen', hexCode: '#9ACD' },
 ];
 
-const ColorSwatch = ({ hexCode }: Color) => {
+const ColorSwatch: React.FC<Color> = ({ hexCode }) => {
   const swatch = {
     backgroundColor: hexCode,
   };
   return <View style={[styles.swatch, swatch]} />;
 };
 
-const AddNewPaletteModal = ({ navigation }: AddNewPaletteModalProps) => {
+const AddNewPaletteModal: React.FC<AddNewPaletteModalProps> = ({
+  navigation,
+}) => {
   const [name, setName] = React.useState('');
   const [selectedColors, setSelectedColors] = React.useState<string[]>([]);
 

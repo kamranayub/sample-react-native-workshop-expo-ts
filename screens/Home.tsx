@@ -15,7 +15,7 @@ interface HomeProps {
   route: RouteProp<MainStackParamList, 'Home'>;
 }
 
-const Home = ({ navigation, route }: HomeProps) => {
+const Home: React.FC<HomeProps> = ({ navigation, route }) => {
   const newColorPalette = route.params
     ? route.params.newColorPalette
     : undefined;

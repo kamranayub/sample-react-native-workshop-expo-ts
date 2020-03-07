@@ -14,14 +14,17 @@ interface PalettePreviewProps {
   palette: ColorPalette;
 }
 
-const ColorSwatch = ({ hexCode }: Color) => {
+const ColorSwatch: React.FC<Color> = ({ hexCode }) => {
   const swatch = {
     backgroundColor: hexCode,
   };
   return <View style={[styles.swatch, swatch]} />;
 };
 
-const PalettePreview = ({ handlePress, palette }: PalettePreviewProps) => (
+const PalettePreview: React.FC<PalettePreviewProps> = ({
+  handlePress,
+  palette,
+}) => (
   <TouchableOpacity onPress={handlePress}>
     <View style={styles.container}>
       <Text style={styles.itemHeader}>{palette.paletteName}</Text>
