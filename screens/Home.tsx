@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
-import { CompositeNavigationProp } from '@react-navigation/native';
+import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import PalettePreview from '../components/PalettePreview';
 import { spacing } from '../tokens';
@@ -18,9 +18,13 @@ interface HomeProps {
     StackNavigationProp<RootStackParamList>,
     StackNavigationProp<MainStackParamList, 'Home'>
   >;
+  route: RouteProp<MainStackParamList, 'Home'>;
 }
 
-const Home = ({ navigation }: HomeProps) => {
+const Home = ({ navigation, route }: HomeProps) => {
+  const newColorPalette = route.params
+    ? route.params.newColorPalette
+    : undefined;
   const [palettes, setPalettes] = React.useState<ColorPalette[]>([]);
   const [refreshing, setRefreshing] = React.useState<boolean>(false);
 
@@ -44,6 +48,12 @@ const Home = ({ navigation }: HomeProps) => {
   useEffect(() => {
     fetchColorPalettes();
   }, [fetchColorPalettes]);
+
+  useEffect(() => {
+    if (newColorPalette) {
+      setPalettes(prevPalettes => [newColorPalette, ...prevPalettes]);
+    }
+  }, [newColorPalette, setPalettes]);
 
   return (
     <View style={styles.container}>

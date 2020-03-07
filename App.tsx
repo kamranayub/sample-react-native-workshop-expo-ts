@@ -13,7 +13,7 @@ export type RootStackParamList = {
 };
 
 export type MainStackParamList = {
-  Home: undefined;
+  Home: { newColorPalette?: ColorPaletteParam };
   ColorPalette: ColorPaletteParam;
 };
 
@@ -23,7 +23,11 @@ const MainStack = createStackNavigator<MainStackParamList>();
 const MainScreen = () => {
   return (
     <MainStack.Navigator>
-      <MainStack.Screen name="Home" component={Home} />
+      <MainStack.Screen
+        name="Home"
+        component={Home}
+        options={{ title: 'Color Schemes' }}
+      />
       <MainStack.Screen
         name="ColorPalette"
         component={ColorPalette}
@@ -47,6 +51,7 @@ const App = () => {
         <RootStack.Screen
           name="ColorPaletteModal"
           component={AddNewPaletteModal}
+          options={{ title: 'Add color palette' }}
         />
       </RootStack.Navigator>
     </NavigationContainer>
