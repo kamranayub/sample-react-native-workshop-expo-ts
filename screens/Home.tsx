@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  Button,
-  View,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
+import { Button, View, StyleSheet, FlatList } from 'react-native';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import PalettePreview from '../components/PalettePreview';

@@ -39,7 +39,7 @@ export default PalettePreview;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: spacing.x6,
+    marginBottom: spacing.x5,
   },
   itemHeader: {
     fontSize: 18,

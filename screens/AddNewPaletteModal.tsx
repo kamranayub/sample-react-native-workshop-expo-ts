@@ -6,7 +6,6 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  TouchableOpacity,
   Switch,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -261,7 +260,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     padding: spacing.x2,
-    marginBottom: spacing.x6,
+    marginBottom: spacing.x5,
   },
   submit: {
     marginVertical: spacing.x1,
