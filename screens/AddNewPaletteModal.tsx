@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Alert,
+  Button,
   View,
   Text,
   TextInput,
@@ -236,9 +237,9 @@ const AddNewPaletteModal = ({ navigation }: AddNewPaletteModalProps) => {
           </View>
         )}
       />
-      <TouchableOpacity style={styles.submit} onPress={handleSubmit}>
-        <Text style={styles.submitText}>Submit</Text>
-      </TouchableOpacity>
+      <View style={styles.submit}>
+        <Button title="Submit" onPress={handleSubmit} />
+      </View>
     </View>
   );
 };
@@ -263,11 +264,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.x6,
   },
   submit: {
-    height: 40,
-    backgroundColor: 'teal',
-    borderRadius: 3,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginVertical: spacing.x1,
   },
   submitText: {
     color: 'white',

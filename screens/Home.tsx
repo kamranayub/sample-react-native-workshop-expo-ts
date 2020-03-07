@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import {
+  Button,
   View,
   StyleSheet,
   FlatList,
@@ -71,11 +72,12 @@ const Home = ({ navigation, route }: HomeProps) => {
           />
         )}
         ListHeaderComponent={
-          <TouchableOpacity
-            onPress={() => navigation.navigate('ColorPaletteModal')}
-          >
-            <Text style={styles.addButton}>Add color scheme</Text>
-          </TouchableOpacity>
+          <View style={styles.addButton}>
+            <Button
+              title="Add color scheme"
+              onPress={() => navigation.navigate('ColorPaletteModal')}
+            />
+          </View>
         }
       />
     </View>
@@ -93,9 +95,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   addButton: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'teal',
     marginBottom: spacing.x2,
   },
 });
